@@ -2,5 +2,5 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/britaszk/public_html/
-    - /bin/cp index.html $DEPLOYPATH
-    - /bin/cp style.css $DEPLOYPATH
+    - /home/britaszk/repositories/bin/cp index.html $DEPLOYPATH
+    - /home/britaszk/repositories/bin/cp style.css $DEPLOYPATH
