@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     </div>
                     <div class="form-group">
                         <label>Confirm Password</label>
-                        <input type="password" name="confirm-password" class="form-control" required />
+                        <input type="password" name="confirm_password" class="form-control" required />
                     </div>
                     <div class="form-group">
                         <input type="submit" name="submit" class="btn btn-primary" value="submit">
