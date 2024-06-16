@@ -17,7 +17,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     if (empty($error)) {
         if($query = $db->prepare("SELECT * FROM users WHERE email = ?")) {
-            $query->bind_param('s',$email);
+            $query->bind_param('s', $email);
             $query->execute();
             $row = $query->fetch();
             if ($row) {
@@ -38,7 +38,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     mysqli_close($db);
 }
 ?>
-
 <!DOCTYPE html>
     <head>
         <meta charset="UTF-8">

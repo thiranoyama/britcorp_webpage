@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION["userid"]) || $_SESSION["userid"] !== true) {
-    header("location: login.php");
+    header("location: /home/britaszk/public_html/login.php");
     exit;
 }
 ?>
@@ -19,7 +19,7 @@ if (!isset($_SESSION["userid"]) || $_SESSION["userid"] !== true) {
                     <h1>Hello, <strong><?php echo $_SESSION["name"]; ?></strong>. Welcome to Britsoc.</h1>
                 </div>
                 <p>
-                    <a href="logout.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Log Out</a>
+                    <a href="/home/britaszk/public_html/logout.php" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Log Out</a>
                 </p>
             </div>
         </div>

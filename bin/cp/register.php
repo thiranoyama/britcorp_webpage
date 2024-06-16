@@ -1,6 +1,6 @@
 <?php
-require_once "config.php";
-require_once "session.php"
+require_once "/home/britaszk/public_html/config.php";
+require_once "/home/britaszk/public_html/session.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $fullname = trim($_POST['name']);
