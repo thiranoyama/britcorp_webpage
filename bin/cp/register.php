@@ -11,9 +11,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
 
     if($query = $db->prepare("select * FROM users WHERE email = ?")) {
         $error = '';
-    $query->bind_param('s', $email);
-    $query->execute();
-    $query->store_result();
+        $query->bind_param('s', $email);
+        $query->execute();
+        $query->store_result();
         if($query->num_rows > 0) {
             $error .= '<p class="error">The email address is already registered!</p>';
         } else {
@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     }
     $query->close();
     $insertQuery->close();
-    mysqli_connect($db)
+    mysqli_connect($db);
 }
 ?>
 
