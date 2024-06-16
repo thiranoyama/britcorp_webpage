@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         if($query = $db->prepare("SELECT * FROM users WHERE email = ?")) {
             $query->bind_param('s', $email);
             $query->execute();
-            $row = $query->fetch();
+            $row = $query->fetch() ?? null;
             if ($row) {
                 if (password_verify($password, $row['password'])) {
                     $_SESSION["userid"] = $row['id'];
