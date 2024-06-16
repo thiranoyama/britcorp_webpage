@@ -14,7 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
         $query->bind_param('s', $email);
         $query->execute();
         $query->store_result();
-        $insertQuery = '';
         if($query->num_rows > 0) {
             $error .= '<p class="error">The email address is already registered!</p>';
         } else {
@@ -38,11 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 } else {
                     $error .= 'p class="error">Something went wrong!</p>';
                 }
+                $insertQuery->close();
             } 
         }
     }
     $query->close();
-    $insertQuery->close();
     mysqli_close($db);
 }
 ?>
