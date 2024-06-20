@@ -18,8 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     if (empty($error)) {
         if($query = $db->prepare("SELECT * FROM users WHERE email = ?")) {
             $query->bind_param('s', $email);
-            $query->execute();
-            $row = $query->fetch();
+            $row = $query->execute();
+            $query->fetch();
             $query->bind_result($db_id, $db_name, $db_email, $db_password);
             if ($row) {
                 if (password_verify($password, $db_password)) {
