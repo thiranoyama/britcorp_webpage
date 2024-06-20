@@ -18,13 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     if (empty($error)) {
         if($query = $db->prepare("select * FROM users WHERE email = ?")) {
             $query->bind_param('s', $email);
-            $query->execute();
-            $query->store_result();
-            $row = $query->fetch();
+            $row = $query->execute();
             if ($row) {
                 if (password_verify($password, $row['password'])) {
                     $_SESSION["userid"] = $row['id'];
-                    $_SESSION["user"] = $row;
+                    $_SESSION["user"] = $query;
                     header("location: /home/britaszk/public_html/welcome.php");
                     exit;
                 } else {
