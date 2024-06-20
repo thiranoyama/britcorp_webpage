@@ -18,10 +18,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     if (empty($error)) {
         if($query = $db->prepare("SELECT * FROM users WHERE email = ?")) {
             $query->bind_param('s', $email);
-            $query->execute();
-            $row = $query->fetch();
-            if ($row) {
+            if ($query->execute()) {
                 $query->bind_result($db_id, $db_name, $db_password, $db_email);
+                $query->fetch();
+                
                 if (password_verify($password, $db_password)) {
                     $_SESSION["userid"] = $db_id;
                     $_SESSION["user"] = $query;
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                         <div class="form-group">
                             <input type="submit" name="submit" class="btn btn-primary" value="Submit">
                         </div>
-                        <p>Don't have an account? <a href="register.php">Register here</a>.</p>
+                        <p>Don't have an account? <a href="/register.php">Register here</a>.</p>
                     </form>
                 </div>
             </div>
