@@ -3,7 +3,7 @@ require_once "/home/britaszk/public_html/config.php";
 require_once "/home/britaszk/public_html/session.php";
 
 $error = '';
-if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
@@ -16,10 +16,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     }
 
     if (empty($error)) {
-        if($query = $db->prepare("SELECT * FROM users WHERE email = ?")) {
+        if($query = $db->prepare("select * FROM users WHERE email = ?")) {
             $query->bind_param('s', $email);
             $query->execute();
-            $row = $query->fetch() ?? null;
+            $query->store_result();
+            $row = $query->fetch();
             if ($row) {
                 if (password_verify($password, $row['password'])) {
                     $_SESSION["userid"] = $row['id'];
@@ -27,17 +28,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                     header("location: /home/britaszk/public_html/welcome.php");
                     exit;
                 } else {
-                    $error .= '<p class="error">The password is not valid.</p>';
+                    $error .= '<p class="error">This password is not valid!</p>';
                 }
             } else {
-                $error .= '<p class="error">No User exist with that email address.</p>';
+                $error .= '<p class="error">User not found! Check your e-mail address.</p>';
             }
         }
-        $query->close();
     }
+    $query->close();
     mysqli_close($db);
 }
 ?>
+
 <!DOCTYPE html>
     <head>
         <meta charset="UTF-8">
