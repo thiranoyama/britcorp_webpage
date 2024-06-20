@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
                 if (password_verify($password, $db_pw)) {
                     $_SESSION["userid"] = $db_id;
                     $_SESSION["user"] = $query;
-                    header("location: /welcome.php");
+                    header("location: /");
                     exit;
                 } else {
                     $error .= '<p class="error">This password is not valid!</p>';
