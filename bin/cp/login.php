@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             $query->execute();
             $row = $query->fetch();
             if ($row) {
-                $query->bind_result($db_id, $db_name, $db_email, $db_password);
+                $query->bind_result($db_id, $db_name, $db_password, $db_email);
                 if (password_verify($password, $db_password)) {
                     $_SESSION["userid"] = $db_id;
                     $_SESSION["user"] = $query;
