@@ -24,7 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             $row = $query->fetch();
             if ($row) {
                 if (password_verify($password, $db_pw)) {
-                    $_SESSION["userid"] = true;
+                    $_SESSION["userid"] = $db_id;
+                    $_SESSION["loggedin"] = true;
+                    $_SESSION["name"] = $db_name;
                     $_SESSION["user"] = $query;
                     header("location: /welcome.php");
                     exit;
