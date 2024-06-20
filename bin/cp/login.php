@@ -1,4 +1,5 @@
 <?php
+session_destroy();
 session_start();
 require_once "/home/britaszk/public_html/config.php";
 require_once "/home/britaszk/public_html/session.php";
