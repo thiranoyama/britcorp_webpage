@@ -18,12 +18,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
     if (empty($error)) {
         if($query = $db->prepare("SELECT * FROM users WHERE email = ?")) {
             $query->bind_param('s', $email);
-            if ($query->execute()) {
-                $query->bind_result($db_id, $db_name, $db_password, $db_email);
-                $query->fetch();
-                
-                if (password_verify($password, $db_password)) {
-                    $_SESSION["userid"] = $db_id;
+            $query->execute();
+            $row = $query->fetch();
+            if ($row) {
+                if (password_verify($password, $row[2])) {
+                    $_SESSION["userid"] = $row['id'];
                     $_SESSION["user"] = $query;
                     header("location: /welcome.php");
                     exit;
